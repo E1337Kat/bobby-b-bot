@@ -11,7 +11,7 @@ import discord
 sys.path.insert(0, os.path.abspath('..'))
 
 # Local application imports
-from utils.core import get_env, get_random_quote # bot standard functions
+from utils.core import get_env, get_random_quote, is_keyword_mentioned # bot standard functions
 
 # validate all mandatory files exist before starting
 # assert os.path.isfile('../utils/logging_config.ini') # Logs config file
@@ -51,7 +51,7 @@ async def on_message(message):
     blocked_users = [ client.user ]
 
     # Bot does not reply to itself and only when mentioned
-    if client.user.mentioned_in(message) and message.author not in blocked_users:
+    if client.user.mentioned_in(message) or is_keyword_mentioned(message.content) and message.author not in blocked_users:
         logger.info("Replied to message of user '{}' in guild '{}' / channel '{}'".format(message.author, message.guild, message.channel))
         msg = get_random_quote().format(message)
         await message.channel.send(msg)
