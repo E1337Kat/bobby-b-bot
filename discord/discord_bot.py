@@ -37,19 +37,21 @@ async def on_message(message):
     # Do not reply to comments from these users, including itself (client.user)
     blocked_users = [ client.user ] 
 
+    def respond(response):
+        """ Abstract functionality which is shared by all responders in this context. Returns an awaitable"""
+        logger.info("Replied to message of user '{}' in guild '{}' / channel '{}'".format(message.author, message.guild, message.channel))
+        msg = response.format(message)
+        return message.channel.send(msg)
+
     if message.author not in blocked_users:
         # Check for mentions first. 
         if client.user.mentioned_in(message):
-            logger.info("Replied to message of user '{}' in guild '{}' / channel '{}'".format(message.author, message.guild, message.channel))
-            msg = get_random_quote(response_config.get("MENTIONS", [])).format(message)
-            await message.channel.send(msg)
+            await respond(get_random_quote(response_config.get("MENTIONS", [])))
         else:
             # Try to find a suitable response from all the possible message based triggers
-            response = generate_message_response(message.content, response_config.get("MESSAGES", []))
-            if response is not None:
-                logger.info("Replied to message of user '{}' in guild '{}' / channel '{}'".format(message.author, message.guild, message.channel))
-                msg = response.format(message)
-                await message.channel.send(msg)
+            quote = generate_message_response(message.content, response_config.get("MESSAGES", []))
+            if quote is not None:
+                await respond(quote)
         
 @client.event
 async def on_guild_join(server):
