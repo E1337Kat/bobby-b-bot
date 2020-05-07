@@ -1,51 +1,47 @@
-# Bobby B Bot - Discord version
-[![Build Status](https://travis-ci.org/bobby-b-bot/discord.svg?branch=master)](https://travis-ci.org/bobby-b-bot/discord) ![GitHub release](https://img.shields.io/github/release/bobby-b-bot/discord.svg) ![GitHub All Releases](https://img.shields.io/github/downloads/bobby-b-bot/discord/total.svg) ![GitHub issues](https://img.shields.io/github/issues-raw/bobby-b-bot/discord.svg) ![GitHub](https://img.shields.io/github/license/bobby-b-bot/discord.svg) [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L3L814HD5)
+# Trigger Happy Bot
 
-In this repository you can find the Discord version of the Bobby B Bot.  
+**TODO: Agree on good bot name now that BobbyB has been abstracted**
 
-## How to use it
+This is a bot, based off of the popular Bobby B bot, with extended functionality which allows quick creation of new bot behaviors, and various types of triggers.
 
-Simply mention the bot's name in your channel '@Bobby B' after adding it via [this link](https://bit.ly/2C0kogN), and the bot will reply with a random quote.
+## Installation
 
-## How to install
-
-1. Create a virtual environment and activate it (this is optional but when working with Python, I cannot recommend it enough) or create a root folder that will hold all the code;
-2. Clone discord repository inside this virtual enviroment folder (let's call it 'root') and then clone [utils](https://github.com/bobby-b-bot/utils.git) repository. The final structure should be somewhat similar to this:
-
-```
-+ root
-└───+ discord
-│     |-- discord_bot.py
-└───+ utils
-      |-- __init__.py
-      |-- core.py
-      |-- logging_config.ini
-      |-- quotes.json
-      |-- triggers.json
-```
-
-4. Run command `pip install -r requirements.txt` in discord directory (this should install the requirements for utils as well, otherwise, you can also run the command in utils folder);
-5. Done, you are ready to configure it.
-
-#### TL;DR Installation:
-
-```
+```bash
 $ python -m venv <venv_name>
-$ cd venv_name
+$ cd <venv_name>
 $ source bin/activate
-(venv_name) $ git clone https://github.com/bobby-b-bot/discord.git
-(venv_name) $ git clone https://github.com/bobby-b-bot/utils.git
+(venv_name) $ git clone <repo>
 (venv_name) $ cd discord
 (venv_name) $ pip install -r requirements.txt
 ```
 
-## How to configure and run
+## Before you can run
 
-1. Create and maintain the .env file for environment variables in root discord folder (ENV = 'TEST' or 'PROD' and Discord token in variable TOKEN) 
-1. Create and mantain a logging_config.ini file in utils folder for logging configuration ([see documentation](https://docs.python.org/3/library/logging.config.html#logging-config-fileformat));
-1. Run the bot (`python discord_bot.py`)
-1. Have fun!
+1. Generate a token for your bot. Store it directly in a file, or simply save it for later.
+2. Create and mantain a logging_config.ini file in utils folder for logging configuration ([see documentation](https://docs.python.org/3/library/logging.config.html#logging-config-fileformat));
+3. [Create a configuration file](#creating-bot-configuration) to describe the bots behavior
+4. Run the bot: (`python discord_bot.py --help` for usage)
 
-## How to contribute
+## Creating Bot Configuration
 
-Feature requests such as new quotes are welcome via issues on GitHub! Feel free to contribute. You can also contribute by donating via [Ko-fi](https://ko-fi.com/L3L814HD5) or [PayPal](http://paypal.me/felipezanettini) to keep the servers running.
+The configuration file describes the bots behavior. Very different bots with various complexity can be created through this interface. The BobbyB bot behavior is reproduced through this interface, and the configuration file is available in configs/
+
+There is also a sample file in configs/ which provide a template for all currently supported triggers and responses.
+
+**TODO: Expand on this**
+
+## Usage
+
+```bash
+usage: discord_bot.py [-h] config token
+
+positional arguments:
+  config      Configuration file containing triggers and responses which
+              define bot behavior
+  token       Discord bot token, or a file containing it.
+
+optional arguments:
+  -h, --help  show this help message and exit
+```
+
+It should be noted that the token can be passed in as ```python discord_bot.py ../configs/my-bot-config.json MY-DISCORD-TOKEN``` or ```MY-DISCORD-TOKEN``` can be saved in a file, and passed in directly as ```python discord_bot.py ../configs/my-bot-config.json tokens/my-bot.token```

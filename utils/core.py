@@ -7,23 +7,6 @@ import json
 import os
 from os.path import join, dirname
 
-# Third party imports
-from dotenv import load_dotenv
-
-def get_env(env_key, filepath):
-    """ Get environment variables """
-    
-    # Create .env file path
-    dotenv_path = join(dirname(filepath), '.env')
-    # Load file from the path
-    load_dotenv(dotenv_path)
-    
-    # Accessing variables
-    try: 
-        return os.getenv(env_key)
-    except Exception as e:
-        return e
-    
 def get_random_quote(responses):
     """ Returns random quote from list of responses"""
     return random.choice(responses)

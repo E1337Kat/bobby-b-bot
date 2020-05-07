@@ -13,12 +13,10 @@ import discord
 sys.path.insert(0, os.path.abspath('..'))
 
 # Local application imports
-from utils.core import get_env, get_random_quote, is_keyword_mentioned, generate_message_response # bot standard functions
+from utils.core import get_random_quote, is_keyword_mentioned, generate_message_response # bot standard functions
 
 # validate all mandatory files exist before starting
 assert os.path.isfile('../utils/logging_config.ini') # Logs config file
-assert os.path.isfile('.env')                       # environment variables file
-
 response_config = dict()
 
 # Instantiate logging in accordance with config file
@@ -27,18 +25,6 @@ logger = logging.getLogger('discord')
 
 # Explicit start of the bot runtime
 logger.info("Started Discord bot")
-
-try:
-    # Check if it is PROD or TEST environment
-    environment = get_env('ENV', __file__)
-    logger.info("Running on environment: {}".format(environment))
-
-    # Get TOKEN environment variable
-    token = get_env('TOKEN', __file__)
-    logger.info("Got Discord token")
-except Exception as e:
-    logger.exception("Could not get environment variables: {}".format(str(vars(e))))
-
 try:
     # Instatiate Discord client
     client = discord.Client()
@@ -48,7 +34,6 @@ except Exception as e:
 
 @client.event
 async def on_message(message):
-
     # Do not reply to comments from these users, including itself (client.user)
     blocked_users = [ client.user ] 
 
@@ -79,7 +64,17 @@ async def on_ready():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("config", type=str, help="Configuration file containing triggers and responses which define bot behavior")
+    parser.add_argument("token", type=str, help="Discord bot token, or a file containing it.")
     args = parser.parse_args()
+    
+    # Check to see if a file was provided, rather than a token string
+    if os.path.isfile(args.token):
+        with open(args.token) as tokenfile:
+            token = tokenfile.read().strip()
+    else:
+        # We didn't get a valid file, assume we were provided a token directly
+        token = args.token
+
     with open(args.config) as config:
         response_config.update(json.load(config))
     try:
