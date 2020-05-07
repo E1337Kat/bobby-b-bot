@@ -1,4 +1,4 @@
-""" Bobby B Bot common functions """
+""" Bot common functions """
 
 # Standard library imports
 import re
@@ -24,27 +24,28 @@ def get_env(env_key, filepath):
     except Exception as e:
         return e
     
-def get_random_quote():
-    """ Returns random quote from quotes file"""
-
-    with open('../utils/quotes.json', 'r') as quotes:
-        bobbyb_quotes = json.load(quotes)
+def get_random_quote(responses):
+    """ Returns random quote from list of responses"""
+    return random.choice(responses)
     
-    return random.choice(bobbyb_quotes)
-    
-def is_keyword_mentioned(text):
-    """ Checks if the trigger words to call the bot are present in the string """
+def is_keyword_mentioned(text, triggers):
+    """ Checks if configured trigger words to call the bot are present in the message content """
      
-    with open('../utils/triggers.json', 'r') as triggers:
-        keywords = json.load(triggers)
-
-    for keyword in keywords:
-    
-        # Do a case insensitive search
+    for keyword in triggers:
+        # Do a case insensitive search. This should work on regex patterns as well.
         if re.search(keyword, text, re.IGNORECASE):
             return True
     
     return False
+
+def generate_message_response(text, messages_config):
+    """ Searches message content and returns a triggered response, if one is needed """
+
+    # Check each trigger->response pair
+    for config in messages_config:
+        if is_keyword_mentioned(text, config.get("triggers", [])):
+            return get_random_quote(config.get("responses", []))
+    return None
 
 def get_username(author):
     """ Handles author names when comment was deleted before the bot could reply """

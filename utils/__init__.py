@@ -1,1 +1,1 @@
-""" Bobby B Bot utilities module """
+""" Bot utilities module """
