@@ -1,8 +1,7 @@
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from utils.core import get_random_quote
 import logging
-import json
-
+import datetime
 from logging.config import fileConfig
 
 fileConfig('../utils/logging_config.ini')
@@ -21,5 +20,7 @@ def init_message_scheduler(config, client, time_in_seconds):
                     logger.info('Channel {} ignored due to insufficient access permissions: {}', channel.name, ex)
 
     sched = AsyncIOScheduler()
-    sched.add_job(send_scheduled_messages, 'interval', seconds=time_in_seconds)
+    sched.add_job(send_scheduled_messages, 'cron', minute=31, hour=5)
+    #sched.add_job(send_scheduled_messages, 'interval', second=time_in_seconds)
+    #sched.add_jobsend_scheduled_messages, 'date', datetime)
     sched.start()

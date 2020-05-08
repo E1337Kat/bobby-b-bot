@@ -14,7 +14,6 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # Local application imports
 from utils.core import get_random_quote, is_keyword_mentioned, generate_message_response # bot standard functions
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from utils.scheduler import init_message_scheduler
 
 # validate all mandatory files exist before starting
@@ -64,7 +63,6 @@ async def on_guild_join(server):
 async def on_ready():
     logger.info("Logged in as '{}', client ID '{}'". format(client.user.name, client.user.id))
     logger.info("Bot currently running on {} guild(s)".format(len(client.guilds)))
-    logger.info('attempting to schedule messages')
 
     init_message_scheduler(response_config, client, 5)
 
