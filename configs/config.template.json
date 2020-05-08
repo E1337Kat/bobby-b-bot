@@ -1,0 +1,12 @@
+{
+    "MESSAGES": [
+        {"triggers": [], "responses": []}
+    ],
+    "REACTIONS": [
+        {"triggers": [], "responses": []}
+    ],
+    "SCHEDULES": [
+        {"triggers": [], "responses": []}
+    ],
+    "MENTIONS": []
+}
