@@ -1,0 +1,22 @@
+{
+    "MESSAGES": [
+        {"triggers": [], "responses": []}
+    ],
+    "REACTIONS": [
+        {"triggers": [], "responses": []}
+    ],
+    "SCHEDULES": [
+        {"triggers": [], "responses": []}
+    ],
+    "MENTIONS": [
+        "It's me, your friendly neighborhood Spiderman!",
+        "My Spidey Senses are tingling!",
+        "I miss Uncle Ben...",
+        "Can't talk, I'm in kind of a sticky situation right now.",
+        "https://media2.giphy.com/media/8zYunr3Hg8XPq/giphy.gif?cid=ecf05e4785c9bfc44b6971c6587b19fa65d5410c1e299468&rid=giphy.gif",
+        "https://media.giphy.com/media/1lxTm2jRzviLH1RzkX/giphy.gif",
+        "https://media0.giphy.com/media/l36kU80xPf0ojG0Erg/giphy.gif",
+        "https://t3.rbxcdn.com/56b0d763fbf6aff4e65ce91218f8e174",
+        "https://media.giphy.com/media/1126AKQRxzUayc/giphy.gif"
+    ]
+}
