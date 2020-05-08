@@ -1,4 +1,4 @@
-""" Bot common functions """
+""" Common functions """
 
 # Standard library imports
 import re

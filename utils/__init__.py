@@ -1,1 +1,1 @@
-""" Bot utilities module """
+""" Utilities module """
