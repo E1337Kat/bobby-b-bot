@@ -1,6 +1,5 @@
 # Trigger Happy Bot
 
-**TODO: Agree on good bot name now that BobbyB has been abstracted**
 
 This is a bot, based off of the popular Bobby B bot, with extended functionality which allows quick creation of new bot behaviors, and various types of triggers.
 
@@ -10,15 +9,15 @@ This is a bot, based off of the popular Bobby B bot, with extended functionality
 $ python -m venv <venv_name>
 $ cd <venv_name>
 $ source bin/activate
-(venv_name) $ git clone <repo>
-(venv_name) $ cd discord
-(venv_name) $ pip install -r requirements.txt
+(venv_name) $ git clone https://github.com/voicelessreason/bobby-b-bot.git
+(venv_name) $ cd bobby-b-bot
+(venv_name) $ python -m pip install -r requirements.txt
 ```
 
 ## Before you can run
 
-1. Generate a token for your bot. Store it directly in a file, or simply save it for later.
-2. Create and mantain a logging_config.ini file in utils folder for logging configuration ([see documentation](https://docs.python.org/3/library/logging.config.html#logging-config-fileformat));
+1. [Create your bot and generate a token](https://discordpy.readthedocs.io/en/latest/discord.html). Store this token in a file in a safe place, or simply save it for use later.
+2. Create and mantain a logging_config.ini file in utils folder for logging configuration ([see documentation](https://docs.python.org/3/library/logging.config.html#logging-config-fileformat))
 3. [Create a configuration file](#creating-bot-configuration) to describe the bots behavior
 4. Run the bot: (`python discord_bot.py --help` for usage)
 
