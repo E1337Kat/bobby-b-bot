@@ -14,6 +14,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # Local application imports
 from utils.core import get_random_quote, is_keyword_mentioned, generate_message_response # bot standard functions
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 # validate all mandatory files exist before starting
 assert os.path.isfile('../utils/logging_config.ini') # Logs config file
@@ -26,11 +27,12 @@ logger = logging.getLogger('discord')
 # Explicit start of the bot runtime
 logger.info("Started Discord bot")
 try:
-    # Instatiate Discord client
+    # Instantiate Discord client
     client = discord.Client()
     logger.info("Instantiated Discord client")
 except Exception as e:
     logger.exception("Error while instantiating Discord client: {}".format(str(vars(e))))
+
 
 @client.event
 async def on_message(message):
@@ -55,13 +57,30 @@ async def on_message(message):
         
 @client.event
 async def on_guild_join(server):
-    logger.info("Bot added to server '{}'".format(server.name))
-    logger.info("Bot currently running on {} guild(s)".format(len(client.guilds)))
-    
+    logger.info("Bot added to guild '{}'".format(server.name))
+
+
 @client.event
 async def on_ready():
     logger.info("Logged in as '{}', client ID '{}'". format(client.user.name, client.user.id))
     logger.info("Bot currently running on {} guild(s)".format(len(client.guilds)))
+    logger.info('attempting to schedule messages')
+
+
+    async def send_messages():
+        msg = get_random_quote(response_config.get("SCHEDULES")["RESPONSES"])
+
+        for guild in client.guilds:
+            for channel in guild.text_channels:
+                logger.info(channel.name)
+                try:
+                    await channel.send(msg)
+                except Exception as ex:
+                    logger.info('Channel {} ignored due to access error: {}', channel.name, ex)
+
+    sched = AsyncIOScheduler()
+    sched.add_job(send_messages, 'interval', seconds=10)
+    sched.start()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
