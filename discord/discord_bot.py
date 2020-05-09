@@ -65,7 +65,7 @@ async def on_ready():
     logger.info("Bot currently running on {} guild(s)".format(len(client.guilds)))
 
     # Start the scheduler if there are scheduled jobs
-    init_message_scheduler(response_config, client)
+    init_message_scheduler(response_config.get("SCHEDULES", {}), client)
 
 
 if __name__ == '__main__':
