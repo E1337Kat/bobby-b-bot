@@ -6,7 +6,7 @@
                 "bobbyb",
                 "bobby-b"
             ], 
-            "responses": [  
+            "RESPONSES": [
                 "IS THAT HOW YOU SPEAK TO YOUR KING??",
                 "YOU HEARD THE HAND, THE KING'S TOO FAT FOR HIS ARMOR! GO FIND THE BREASTPLATE STRETCHER! NOW!",
                 "THE WHORE IS PREGNANT!",
@@ -148,8 +148,7 @@
         "TAKE SHIP FOR THE FREE CITIES WITH MY HORSE AND MY HAMMER, SPEND MY TIME WARRING AND WHORING, THAT’S WHAT I WAS MADE FOR!",
         "THE SELLSWORD KING, HOW THE SINGERS WOULD LOVE ME!" 
     ],
-    "SCHEDULES": {
-        "TRIGGERS": [""],
-        "RESPONSES": ["Poo Poo Pee Pee", "Butts"]
-    }
+    "SCHEDULES": [
+        {"MESSAGES": [], "ARGS": {}}
+    ]
 }

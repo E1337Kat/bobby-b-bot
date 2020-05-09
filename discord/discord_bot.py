@@ -64,7 +64,7 @@ async def on_ready():
     logger.info("Logged in as '{}', client ID '{}'". format(client.user.name, client.user.id))
     logger.info("Bot currently running on {} guild(s)".format(len(client.guilds)))
 
-    init_message_scheduler(response_config, client, 5)
+    init_message_scheduler(response_config, client)
 
 
 if __name__ == '__main__':

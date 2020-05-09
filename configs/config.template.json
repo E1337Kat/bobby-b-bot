@@ -1,12 +1,12 @@
 {
     "MESSAGES": [
-        {"triggers": [], "responses": []}
+        {"TRIGGERS": [], "RESPONSES": []}
     ],
     "REACTIONS": [
-        {"triggers": [], "responses": []}
+        {"TRIGGERS": [], "RESPONSES": []}
     ],
     "SCHEDULES": [
-        {"triggers": [], "responses": []}
+        {"MESSAGES": [], "ARGS": {}}
     ],
     "MENTIONS": []
 }
