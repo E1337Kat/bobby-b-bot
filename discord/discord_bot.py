@@ -64,6 +64,7 @@ async def on_ready():
     logger.info("Logged in as '{}', client ID '{}'". format(client.user.name, client.user.id))
     logger.info("Bot currently running on {} guild(s)".format(len(client.guilds)))
 
+    # Start the scheduler if there are scheduled jobs
     init_message_scheduler(response_config, client)
 
 
