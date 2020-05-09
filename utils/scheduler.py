@@ -26,4 +26,7 @@ def init_message_scheduler(jobs, client):
                     logger.debug('Channel {} ignored due to insufficient access permissions: {}', channel.name, ex)
 
     for job in jobs:
-        scheduler.add_job(send_scheduled_message, args=[get_random_quote(job.get("MESSAGES", []))], **job.get("ARGS", {}))
+        scheduler.add_job(send_scheduled_message,
+                          args=[get_random_quote(job.get("MESSAGES", []))],
+                          **job.get("ARGS", dict())
+                          )
