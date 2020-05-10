@@ -26,8 +26,8 @@ def generate_message_response(text, messages_config):
 
     # Check each trigger->response pair
     for config in messages_config:
-        if is_keyword_mentioned(text, config.get("triggers", [])):
-            return get_random_quote(config.get("responses", []))
+        if is_keyword_mentioned(text, config.get("TRIGGERS", [])):
+            return get_random_quote(config.get("RESPONSES", []))
     return None
 
 def get_username(author):
