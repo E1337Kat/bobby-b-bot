@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
+from utils.core import *
 
 
 class TestCore(unittest.TestCase):
@@ -15,14 +16,9 @@ class TestCore(unittest.TestCase):
     ]
 
     def test_get_random_quote(self):
-        from utils.core import get_random_quote
-
         self.assertEqual(get_random_quote(self.MESSAGES[0]["RESPONSES"]), "Response One")
 
     def test_is_keyword_mentioned(self):
-        from utils.core import is_keyword_mentioned
-
-        # Returns the correct value in each case
         self.assertTrue(is_keyword_mentioned("trigger one", self.MESSAGES[0]["TRIGGERS"]))
         self.assertFalse(is_keyword_mentioned("trigger one", self.MESSAGES[1]["TRIGGERS"]))
 
@@ -31,8 +27,6 @@ class TestCore(unittest.TestCase):
         self.assertFalse(is_keyword_mentioned("TRIGGER TWO", self.MESSAGES[0]["TRIGGERS"]))
 
     def test_generate_message_response(self):
-        from utils.core import generate_message_response
-
         self.assertEqual(generate_message_response("trigger one", self.MESSAGES), "Response One")
         self.assertEqual(generate_message_response("trigger two", self.MESSAGES), "Response Two")
 

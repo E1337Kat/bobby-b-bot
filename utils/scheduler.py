@@ -2,9 +2,11 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from utils.core import get_random_quote
 import logging
 from logging.config import fileConfig
-
-fileConfig('../utils/logging_config.ini')
+from os import path
+log_file_path = path.join(path.dirname(path.abspath(__file__)), 'logging_config.ini')
+fileConfig(log_file_path)
 logger = logging.getLogger('discord')
+
 
 # Pass in a configuration and scheduled jobs will be added accordingly
 def init_message_scheduler(jobs, client):
