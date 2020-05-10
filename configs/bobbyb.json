@@ -1,10 +1,11 @@
 {
     "MESSAGES": [
         {
-            "triggers": [  
+            "TRIGGERS": [  
                 "bobby b",
                 "bobbyb",
-                "bobby-b"
+                "bobby-b",
+                ":crown:"
             ], 
             "RESPONSES": [
                 "IS THAT HOW YOU SPEAK TO YOUR KING??",

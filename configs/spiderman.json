@@ -1,12 +1,12 @@
 {
     "MESSAGES": [
-        {"triggers": [], "responses": []}
+        {"TRIGGERS": [":pizza:"], "RESPONSES": ["I don't deliver that lol"]}
     ],
     "REACTIONS": [
-        {"triggers": [], "responses": []}
+        {"TRIGGERS": [], "RESPONSES": []}
     ],
     "SCHEDULES": [
-        {"triggers": [], "responses": []}
+        {"TRIGGERS": [], "RESPONSES": []}
     ],
     "MENTIONS": [
         "It's me, your friendly neighborhood Spiderman!",

@@ -5,6 +5,7 @@ import logging
 from logging.config import fileConfig
 import argparse
 import json
+import emoji
 
 # Third party imports
 import discord
@@ -37,7 +38,6 @@ except Exception as e:
 async def on_message(message):
     # Do not reply to comments from these users, including itself (client.user)
     blocked_users = [ client.user ] 
-
     def respond(response):
         """ Abstract functionality which is shared by all responders in this context. Returns an awaitable"""
         logger.info("Replied to message of user '{}' in guild '{}' / channel '{}'".format(message.author, message.guild, message.channel))
@@ -49,8 +49,12 @@ async def on_message(message):
         if client.user.mentioned_in(message):
             await respond(get_random_quote(response_config.get("MENTIONS", [])))
         else:
+            # Replace emoji unicode with the CLDR names so that we can properly trigger. 
+            # This will safely translate only supported unicode, and leave the rest of the string intact.
+            content = emoji.demojize(message.content)
+
             # Try to find a suitable response from all the possible message based triggers
-            quote = generate_message_response(message.content, response_config.get("MESSAGES", []))
+            quote = generate_message_response(content, response_config.get("MESSAGES", []))
             if quote is not None:
                 await respond(quote)
         
