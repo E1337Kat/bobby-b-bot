@@ -3,7 +3,7 @@
         {"TRIGGERS": [":pizza:"], "RESPONSES": ["I don't deliver that lol"]}
     ],
     "REACTIONS": [
-        {"TRIGGERS": [], "RESPONSES": []}
+        {"TRIGGERS": [":pizza:"], "RESPONSES": ["https://i.kym-cdn.com/entries/icons/original/000/022/537/pizza_tim.png"]}
     ],
     "SCHEDULES": [
         {"TRIGGERS": [], "RESPONSES": []}

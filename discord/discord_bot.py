@@ -34,20 +34,21 @@ try:
 except Exception as e:
     logger.exception("Error while instantiating Discord client: {}".format(str(vars(e))))
 
+def respond(message, response):
+    """ Format an awaitable to send as a response to a message object. """
+    logger.info("Replied to message of user '{}' in guild '{}' / channel '{}'".format(message.author, message.guild, message.channel))
+    msg = response.format(message)
+    return message.channel.send(msg)
+
 @client.event
 async def on_message(message):
     # Do not reply to comments from these users, including itself (client.user)
     blocked_users = [ client.user ] 
-    def respond(response):
-        """ Abstract functionality which is shared by all responders in this context. Returns an awaitable"""
-        logger.info("Replied to message of user '{}' in guild '{}' / channel '{}'".format(message.author, message.guild, message.channel))
-        msg = response.format(message)
-        return message.channel.send(msg)
-
+    
     if message.author not in blocked_users:
         # Check for mentions first. 
         if client.user.mentioned_in(message):
-            await respond(get_random_quote(response_config.get("MENTIONS", [])))
+            await respond(message, get_random_quote(response_config.get("MENTIONS", [])))
         else:
             # Replace emoji unicode with the CLDR names so that we can properly trigger. 
             # This will safely translate only supported unicode, and leave the rest of the string intact.
@@ -56,8 +57,14 @@ async def on_message(message):
             # Try to find a suitable response from all the possible message based triggers
             quote = generate_message_response(content, response_config.get("MESSAGES", []))
             if quote is not None:
-                await respond(quote)
-        
+                await respond(message, quote)
+
+@client.event
+async def on_reaction_add(reaction, user):
+    quote = generate_message_response(emoji.demojize(reaction.emoji), response_config.get("REACTIONS", []))
+    if quote is not None:
+        await respond(reaction.message, quote)
+
 @client.event
 async def on_guild_join(server):
     logger.info("Bot added to guild '{}'".format(server.name))
