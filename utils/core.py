@@ -8,13 +8,13 @@ import os
 from os.path import join, dirname
 
 def get_random_item(choices):
-    """ Returns random quote from list of choices """
+    """ Returns random quote from list of choices, or None if provided no options. """
     if choices:
         return random.choice(choices)
     return None
     
 def is_keyword_mentioned(text, triggers):
-    """ Checks if configured trigger words to call the bot are present in the message content """
+    """ Checks if configured trigger words to call the bot are present in the text content """
      
     for keyword in triggers:
         # Do a case insensitive search. This should work on regex patterns as well.
@@ -26,7 +26,7 @@ def is_keyword_mentioned(text, triggers):
 def get_trigger_from_content(content, messages_config):
     """ Searches message content and returns a specific trigger configuration if one is found, as defined in the provided config """
 
-    # Check each trigger->response pair
+    # Check each trigger->action pair
     for config in messages_config:
         if is_keyword_mentioned(content, config.get("TRIGGERS", [])):
             return config

@@ -35,13 +35,13 @@ except Exception as e:
     logger.exception("Error while instantiating Discord client: {}".format(str(vars(e))))
 
 async def respond(message, response):
-    """ Format an awaitable to send as a response to a message object. """
+    """ Format a response to a message object and yield """
     logger.info("Replied to message of user '{}' in guild '{}' / channel '{}'".format(message.author, message.guild, message.channel))
     msg = response.format(message)
     await message.channel.send(msg)
 
 async def respond_from_triggers(message, content, triggers):
-    """ Search message content according to provided triggers and provide the best response. Returns an awaitable """
+    """ Search message content according to provided triggers and yield the best response"""
 
     # Replace emoji unicode with the CLDR names so that we can properly trigger. 
     # This will safely translate only supported unicode, and leave the rest of the string intact.
@@ -63,7 +63,7 @@ async def on_message(message):
     blocked_users = [ client.user ] 
     
     if message.author not in blocked_users:
-        # Check for mentions first. 
+        # Check for mentions first, otherwise respond to message content based triggers.
         if client.user.mentioned_in(message):
             await respond(message, get_random_item(response_config.get("MENTIONS", [])))
         else:

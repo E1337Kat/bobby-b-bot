@@ -1,9 +1,9 @@
 {
     "MESSAGES": [
-        {"TRIGGERS": [], "RESPONSES": []}
+        {"TRIGGERS": [], "REACTIONS": [], "RESPONSES": []}
     ],
     "REACTIONS": [
-        {"TRIGGERS": [], "RESPONSES": []}
+        {"TRIGGERS": [], "REACTIONS": [], "RESPONSES": []}
     ],
     "SCHEDULES": [
         {"MESSAGES": [], "ARGS": {}}
