@@ -14,7 +14,7 @@ import discord
 sys.path.insert(0, os.path.abspath('..'))
 
 # Local application imports
-from utils.core import get_random_quote, is_keyword_mentioned, generate_message_response # bot standard functions
+from utils.core import is_keyword_mentioned, get_trigger_from_content, get_random_item # bot standard functions
 from utils.scheduler import init_message_scheduler
 
 # validate all mandatory files exist before starting
@@ -34,11 +34,28 @@ try:
 except Exception as e:
     logger.exception("Error while instantiating Discord client: {}".format(str(vars(e))))
 
-def respond(message, response):
+async def respond(message, response):
     """ Format an awaitable to send as a response to a message object. """
     logger.info("Replied to message of user '{}' in guild '{}' / channel '{}'".format(message.author, message.guild, message.channel))
     msg = response.format(message)
-    return message.channel.send(msg)
+    await message.channel.send(msg)
+
+async def respond_from_triggers(message, content, triggers):
+    """ Search message content according to provided triggers and provide the best response. Returns an awaitable """
+
+    # Replace emoji unicode with the CLDR names so that we can properly trigger. 
+    # This will safely translate only supported unicode, and leave the rest of the string intact.
+    trigger = get_trigger_from_content(emoji.demojize(content, use_aliases=True), triggers)
+    if trigger:
+        # Try to get a quote and reaction from this trigger. We can do both
+        quote = get_random_item(trigger.get("RESPONSES"))
+        reaction = get_random_item(trigger.get("REACTIONS"))
+        if quote:
+            await respond(message, quote)
+        if reaction:
+            emote = emoji.emojize(reaction, use_aliases=True)
+            if emote in emoji.UNICODE_EMOJI:
+                await message.add_reaction(emote)
 
 @client.event
 async def on_message(message):
@@ -48,22 +65,18 @@ async def on_message(message):
     if message.author not in blocked_users:
         # Check for mentions first. 
         if client.user.mentioned_in(message):
-            await respond(message, get_random_quote(response_config.get("MENTIONS", [])))
+            await respond(message, get_random_item(response_config.get("MENTIONS", [])))
         else:
-            # Replace emoji unicode with the CLDR names so that we can properly trigger. 
-            # This will safely translate only supported unicode, and leave the rest of the string intact.
-            content = emoji.demojize(message.content)
-
-            # Try to find a suitable response from all the possible message based triggers
-            quote = generate_message_response(content, response_config.get("MESSAGES", []))
-            if quote is not None:
-                await respond(message, quote)
+            await respond_from_triggers(message, message.content, response_config.get("MESSAGES", []))
 
 @client.event
 async def on_reaction_add(reaction, user):
-    quote = generate_message_response(emoji.demojize(reaction.emoji), response_config.get("REACTIONS", []))
-    if quote is not None:
-        await respond(reaction.message, quote)
+    # Do not listen to reactions from these users, including itself (client.user)
+    blocked_users = [ client.user ] 
+    
+    if user not in blocked_users:
+        content = emoji.demojize(reaction.emoji, use_aliases=True)
+        await respond_from_triggers(reaction.message, reaction.emoji, response_config.get("REACTIONS", []))
 
 @client.event
 async def on_guild_join(server):

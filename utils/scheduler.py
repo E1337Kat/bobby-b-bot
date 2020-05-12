@@ -1,5 +1,5 @@
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from utils.core import get_random_quote
+from utils.core import get_random_item
 import logging
 from logging.config import fileConfig
 
@@ -27,6 +27,6 @@ def init_message_scheduler(jobs, client):
 
     for job in jobs:
         scheduler.add_job(send_scheduled_message,
-                          args=[get_random_quote(job.get("MESSAGES", []))],
+                          args=[get_random_item(job.get("MESSAGES", []))],
                           **job.get("ARGS", dict())
                           )

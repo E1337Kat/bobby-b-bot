@@ -1,9 +1,9 @@
 {
     "MESSAGES": [
-        {"TRIGGERS": [":pizza:"], "RESPONSES": ["I don't deliver that lol"]}
+        {"TRIGGERS": [":pizza:"], "REACTIONS": [":pizza:"], "RESPONSES": ["I don't deliver that lol"]}
     ],
     "REACTIONS": [
-        {"TRIGGERS": [":pizza:"], "RESPONSES": ["https://i.kym-cdn.com/entries/icons/original/000/022/537/pizza_tim.png"]}
+        {"TRIGGERS": [":pizza:"], "REACTIONS": [":100:"], "RESPONSES": ["https://i.kym-cdn.com/entries/icons/original/000/022/537/pizza_tim.png"]}
     ],
     "SCHEDULES": [
         {"TRIGGERS": [], "RESPONSES": []}
