@@ -65,9 +65,9 @@ async def on_message(message):
     if message.author not in blocked_users:
         # Check for mentions first, otherwise respond to message content based triggers.
         if client.user.mentioned_in(message):
-            await respond(message, get_random_item(response_config.get("MENTIONS", [])))
+            await respond(message, get_random_item(response_config.get("MENTION_EVENTS", [])))
         else:
-            await respond_from_triggers(message, message.content, response_config.get("MESSAGES", []))
+            await respond_from_triggers(message, message.content, response_config.get("MESSAGE_EVENTS", []))
 
 @client.event
 async def on_reaction_add(reaction, user):
@@ -76,7 +76,7 @@ async def on_reaction_add(reaction, user):
     
     if user not in blocked_users:
         content = emoji.demojize(reaction.emoji, use_aliases=True)
-        await respond_from_triggers(reaction.message, reaction.emoji, response_config.get("REACTIONS", []))
+        await respond_from_triggers(reaction.message, reaction.emoji, response_config.get("REACTION_EVENTS", []))
 
 @client.event
 async def on_guild_join(server):
@@ -89,7 +89,7 @@ async def on_ready():
     logger.info("Bot currently running on {} guild(s)".format(len(client.guilds)))
 
     # Start the scheduler if there are scheduled jobs
-    init_message_scheduler(response_config.get("SCHEDULES", {}), client)
+    init_message_scheduler(response_config.get("SCHEDULE_EVENTS", {}), client)
 
 
 if __name__ == '__main__':
