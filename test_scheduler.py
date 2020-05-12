@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import MagicMock
+from mock import MagicMock
 from utils.scheduler import init_message_scheduler
 
 
