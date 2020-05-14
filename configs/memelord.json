@@ -1,5 +1,5 @@
 {
-    "MESSAGES": [
+    "MESSAGE_EVENTS": [
         {
             "TRIGGERS": [
                 "meme",
@@ -9,6 +9,24 @@
                 "mey meys"
             ],
             "RESPONSES": [
+                "https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/p640x640/92669137_227466908333400_5723825526500837059_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=100&_nc_ohc=HwurXIK7EpoAX84KN0y&oh=96e1cd7f23bf95515b4bc8c29cea2d82&oe=5EDF9186",
+                "https://i.imgflip.com/3y9q9m.jpg",
+                "https://media.makeameme.org/created/for-a-valorant.jpg",
+                "https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/92641634_154508519320554_2353619412846777800_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=106&_nc_ohc=Sv6gaqYGEbQAX93ybM8&oh=d98e3780b70a1af6d126743875c81dc7&oe=5EDDCFC1",
+                "https://i.redd.it/weghthh3nil41.jpg",
+                "https://pbs.twimg.com/profile_images/822224070762696705/X1v3eLfZ_400x400.jpg",
+                "https://i.imgur.com/V1I7JXu.png",
+                "https://pbs.twimg.com/media/DMBZhuwU8AAx8OG.jpg",
+                "https://i.imgur.com/TV1zOr4.png",
+                "https://i.imgur.com/PquPKIM.png",
+                "https://66.media.tumblr.com/e982e21524e0308fad1851b71da14ca8/tumblr_o98huvV1JK1qhuzb4o3_400.jpg",
+                "https://pics.conservativememes.com/four-hours-of-sleep-last-night-not-bad-meme-generator-8864398.png",
+                "https://i.imgur.com/vc1SjzL.png",
+                "https://i.imgur.com/rzWSqO6.png",
+                "https://preview.redd.it/ttcheia799r21.jpg?width=960&crop=smart&auto=webp&s=cce03ebaad40d7ced1900c5d42b257da07f63e6d",
+                "https://preview.redd.it/9ppeblwhfou41.jpg?width=640&crop=smart&auto=webp&s=96c9b014f81a2d8b8900527921963004f8527ccc",
+                "https://i.imgur.com/xBe2ZOB.png",
+                "https://i.redd.it/d71p64qsd7w41.jpg",
                 "https://www.youtube.com/watch?v=mLyOj_QD4a4",
                 "https://www.youtube.com/watch?v=8lBO23Dh23I",
                 "https://www.youtube.com/watch?v=RUaYbfKZIiA",
@@ -46,8 +64,47 @@
                 "https://i.redd.it/bpw7yxcl16y41.jpg",
                 "https://i.redd.it/widjgzorp8y41.jpg",
                 "https://i.redd.it/hdgqxk2f3by41.jpg",
-                "https://i.redd.it/8w5goup7ray41.jpg"
+                "https://i.redd.it/8w5goup7ray41.jpg",
+                "https://media.discordapp.net/attachments/708095797694038056/710316506394787840/qox3h64cxky41.jpg",
+                "https://i.redd.it/5i6rkur5l2x41.jpg",
+                "https://preview.redd.it/1m0n6wethqy41.jpg?width=640&crop=smart&auto=webp&s=626e0ab24d1b0ee716fb30063ad5a5e2e4c7de6e",
+                "https://preview.redd.it/8axrc70x5oy41.jpg?width=640&crop=smart&auto=webp&s=1e6848b59fa4d6917b675a828969db59208ecd64",
+                "https://preview.redd.it/r2vwyedvkny41.png?width=640&crop=smart&auto=webp&s=721eb728abf8b40b40abeb7af39aa814162ab2ab",
+                "https://preview.redd.it/buye4md58my41.jpg?width=640&crop=smart&auto=webp&s=757a542ebb9c4538f65a23024cb9e770f031c9ac",
+                "https://preview.redd.it/ofedv6z3emy41.jpg?width=640&crop=smart&auto=webp&s=15da46b562ad2b7d7f10d44c1e5cde42d7492e6b",
+                "https://i.redd.it/ne70rzl9jly41.jpg",
+                "https://preview.redd.it/9ythdelo4qy41.jpg?width=640&crop=smart&auto=webp&s=a7934be2ee28925b413f543bf87eab05d661e7a5",
+                "https://i.redd.it/sy7qcnynrmy41.jpg",
+                "https://preview.redd.it/nu36glwgmly41.jpg?width=640&crop=smart&auto=webp&s=8d3da539b40b459c7d6d8412c108b9efba398bdb",
+                "https://preview.redd.it/lnh9981hooy41.jpg?width=640&crop=smart&auto=webp&s=69c80ab91c3c27565014520cdd02739fefe40b5c",
+                "https://preview.redd.it/7qqtywz7doy41.jpg?width=640&crop=smart&auto=webp&s=c35e5b9bbb1fcbb1ec48238590fa1c12225d47c3",
+                "https://preview.redd.it/w59qyp403ly41.jpg?width=640&crop=smart&auto=webp&s=824c1428f17f5a08bd394efc9696f6f3d94baf4b",
+                "https://i.redd.it/9ll6i5yhcpy41.jpg",
+                "https://preview.redd.it/nuxsbfc1iqy41.jpg?width=640&crop=smart&auto=webp&s=6804135481cb561609685518c36e801c79dbe6d4",
+                "https://preview.redd.it/wvwqqbb6sly41.jpg?width=640&crop=smart&auto=webp&s=456db9c1fb6d926958e0e0a952b2abfb689a252d",
+                "https://preview.redd.it/6ffus197ooy41.png?width=640&crop=smart&auto=webp&s=c804c5599e2a6f7c1c0416a616ed6d3cb19d6ee0",
+                "https://i.redd.it/cnhhp7rr1ly41.jpg",
+                "https://preview.redd.it/qwx4mddv1qy41.jpg?width=640&crop=smart&auto=webp&s=40a55eb742fb05c5e93ed7daa043666f35c915cc",
+                "https://preview.redd.it/g30pxd1pyky41.png?width=640&crop=smart&auto=webp&s=322a28d1d84f6bdbfd85535b1749b66a601864d6",
+                "https://i.redd.it/7et7voxeooy41.jpg",
+                "https://preview.redd.it/hvhebl1w9ly41.jpg?width=640&crop=smart&auto=webp&s=6244e2fb20010812d3dd002cad37e0ec4f22ddcc",
+                "https://preview.redd.it/ev7edcgu8oy41.jpg?width=640&crop=smart&auto=webp&s=df38278f46758855f033c42dc99598dc2d3ad7fc",
+                "https://i.redd.it/wr51xoygdpy41.jpg",
+                "https://external-preview.redd.it/pqd2EIKYp1d4kzVbSZodfkQ9vN8sgAkqTZq48OE3RII.jpg?width=640&crop=smart&auto=webp&s=808b01c2707e3e740dabe5425ae4df7a1d16434a",
+                "https://preview.redd.it/2iiuim0myoy41.jpg?width=640&crop=smart&auto=webp&s=6e549df8ee21f7a83b33c33f6b96ed6016d8c018",
+                "https://preview.redd.it/xpiecd787ly41.jpg?width=640&crop=smart&auto=webp&s=ef3b7433135553936feffab9670a05f11c551b85",
+                "https://preview.redd.it/ofi8lzh08my41.png?width=640&crop=smart&auto=webp&s=174d1d3c9bdd687b64605e4b8b8a1eaf598c185b",
+                "https://preview.redd.it/wwfhplovvmy41.jpg?width=640&crop=smart&auto=webp&s=25e09ef8e8fa0123c3414b5703d96f6f226aefe5",
+                "https://i.redd.it/p4ek2q2nypy41.jpg",
+                "https://preview.redd.it/4819vw1n2ly41.jpg?width=640&crop=smart&auto=webp&s=6a4f438774056c9b2942e96f92b283c8eadd7b69",
+                "https://i.redd.it/k5i7606sapy41.jpg",
+                "https://preview.redd.it/dkytkjzvyqy41.jpg?width=640&crop=smart&auto=webp&s=28b60fb4e317271e055362e22a316fc1cb4f0edd",
+                "https://preview.redd.it/1fqnjgs3jly41.jpg?width=640&crop=smart&auto=webp&s=2122f45100ee710ef717c506f883797682a5cdf3"
             ]
+        },
+        {
+            "TRIGGERS": ["disturbing"],
+            "RESPONSES": ["https://preview.redd.it/8lhh1v4c6gw41.jpg?width=640&crop=smart&auto=webp&s=583818392ff0c5bb4e3c8aa0c8c20db3a92e01b3"]
         },
         {
             "TRIGGERS": [
@@ -69,7 +126,6 @@
         },
         {
             "TRIGGERS": [
-                "pussy",
                 "bitch",
                 "pansy",
                 "loser",
@@ -112,6 +168,7 @@
             ]
         },{
             "TRIGGERS": [
+                "nice",
                 "69",
                 "sex",
                 "blowjob",
@@ -176,10 +233,10 @@
             ]
         }
     ],
-    "REACTIONS": [
+    "REACTION_EVENTS": [
         {"TRIGGERS": [], "RESPONSES": []}
     ],
-    "SCHEDULES": [
+    "SCHEDULE_EVENTS": [
         {
             "MESSAGES": [
                 "420 BLAZE IT",
@@ -193,7 +250,7 @@
             }
         }
     ],
-    "MENTIONS": [
+    "MENTION_EVENTS": [
         "What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo."
     ]
 }
