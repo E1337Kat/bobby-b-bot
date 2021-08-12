@@ -1,14 +1,14 @@
 {
-    "MESSAGES": [
-        {"triggers": [], "responses": []}
+    "MESSAGE_EVENTS": [
+        {"TRIGGERS": [":pizza:"], "REACTIONS": [":pizza:"], "RESPONSES": ["I don't deliver that lol"]}
     ],
-    "REACTIONS": [
-        {"triggers": [], "responses": []}
+    "REACTION_EVENTS": [
+        {"TRIGGERS": [":pizza:"], "REACTIONS": [":100:"], "RESPONSES": ["https://i.kym-cdn.com/entries/icons/original/000/022/537/pizza_tim.png"]}
     ],
-    "SCHEDULES": [
-        {"triggers": [], "responses": []}
+    "SCHEDULE_EVENTS": [
+        {"TRIGGERS": [], "RESPONSES": []}
     ],
-    "MENTIONS": [
+    "MENTION_EVENTS": [
         "It's me, your friendly neighborhood Spiderman!",
         "My Spidey Senses are tingling!",
         "I miss Uncle Ben...",

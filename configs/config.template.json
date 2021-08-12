@@ -1,12 +1,12 @@
 {
-    "MESSAGES": [
-        {"TRIGGERS": [], "RESPONSES": []}
+    "MESSAGE_EVENTS": [
+        {"TRIGGERS": [], "REACTIONS": [], "RESPONSES": []}
     ],
-    "REACTIONS": [
-        {"TRIGGERS": [], "RESPONSES": []}
+    "REACTION_EVENTS": [
+        {"TRIGGERS": [], "REACTIONS": [], "RESPONSES": []}
     ],
-    "SCHEDULES": [
+    "SCHEDULE_EVENTS": [
         {"MESSAGES": [], "ARGS": {}}
     ],
-    "MENTIONS": []
+    "MENTION_EVENTS": []
 }

@@ -1,5 +1,5 @@
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from utils.core import get_random_quote
+from utils.core import get_random_item
 import logging
 from logging.config import fileConfig
 from os import path
@@ -11,7 +11,7 @@ logger = logging.getLogger('discord')
 # Pass in a configuration and scheduled jobs will be added accordingly
 def init_message_scheduler(jobs, client):
 
-    if not jobs or not len(jobs) or not any("MESSAGES" in job.keys() for job in jobs):
+    if not jobs or not len(jobs) or not any(job.get("MESSAGES") for job in jobs):
         logger.info("No jobs found in provided config.")
         return
 
@@ -28,7 +28,9 @@ def init_message_scheduler(jobs, client):
                     logger.debug('Channel {} ignored due to insufficient access permissions: {}', channel.name, ex)
 
     for job in jobs:
-        scheduler.add_job(send_scheduled_message,
-                          args=[get_random_quote(job.get("MESSAGES", []))],
-                          **job.get("ARGS", dict())
-                          )
+        messages = job.get("MESSAGES")
+        if messages:
+            scheduler.add_job(send_scheduled_message,
+                            args=[get_random_item(messages)],
+                            **job.get("ARGS", dict())
+                            )
