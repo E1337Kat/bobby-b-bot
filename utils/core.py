@@ -4,7 +4,6 @@
 import re
 import random
 
-
 def get_random_item(choices):
     """ Returns random quote from list of choices, or None if provided no options. """
     if choices:
