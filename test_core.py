@@ -26,10 +26,6 @@ class TestCore(unittest.TestCase):
         self.assertTrue(is_keyword_mentioned("TRIGGER TWO", self.MESSAGES[1]["TRIGGERS"]))
         self.assertFalse(is_keyword_mentioned("TRIGGER TWO", self.MESSAGES[0]["TRIGGERS"]))
 
-    def test_generate_message_response(self):
-        self.assertEqual(generate_message_response("trigger one", self.MESSAGES), "Response One")
-        self.assertEqual(generate_message_response("trigger two", self.MESSAGES), "Response Two")
-
     def test_get_username(self):
         from utils.core import get_username
         author_mock = MagicMock()
