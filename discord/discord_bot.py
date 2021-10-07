@@ -1,10 +1,14 @@
 # Standard library imports
+import asyncio
 import sys
 import os
 import logging
 from logging.config import fileConfig
 import argparse
 import json
+import threading
+from typing import overload
+from discord.message import Message
 import emoji
 
 # Third party imports
@@ -25,11 +29,42 @@ response_config = dict()
 fileConfig('../utils/logging_config.ini')
 logger = logging.getLogger('discord')
 
+
+# class BotConf:
+#     def __init__(self, *, config_file=None, **options):
+#         self.config_file = config_file
+
+#     def fetch_token(self):
+#         with open(self.config_file) as config:
+#             response_config.update(json.load(config))
+#             token = response_config.get("TOKEN", "TOKEN_HERE")
+#             if token == "TOKEN_HERE":
+#                 return
+
+class LocalClient(discord.Client):
+    def __init__(self, *, loop=None, **options):
+        super().__init__()
+        self.config_file = str()
+        self.response_config = dict()
+
+    def add_config(self, config_file):
+        self.config_file = config_file
+
+    def fetch_token(self) -> str:
+        with open(self.config_file) as config:
+            self.response_config.update(json.load(config))
+            # logger.info("using config: " + str(client.response_config))
+            token = self.response_config.get("TOKEN", "TOKEN_HERE")
+            logger.info("using token: " + str(token))
+            return token
+
+
 # Explicit start of the bot runtime
 logger.info("Started Discord bot")
 try:
     # Instantiate Discord client
-    client = discord.Client()
+    
+    client = LocalClient()
     logger.info("Instantiated Discord client")
 except Exception as e:
     logger.exception("Error while instantiating Discord client: {}".format(str(vars(e))))
@@ -65,9 +100,9 @@ async def on_message(message):
     if message.author not in blocked_users:
         # Check for mentions first, otherwise respond to message content based triggers.
         if client.user.mentioned_in(message):
-            await respond(message, get_random_item(response_config.get("MENTION_EVENTS", [])))
+            await respond(message, get_random_item(client.response_config.get("MENTION_EVENTS", [])))
         else:
-            await respond_from_triggers(message, message.content, response_config.get("MESSAGE_EVENTS", []))
+            await respond_from_triggers(message, message.content, client.response_config.get("MESSAGE_EVENTS", []))
 
 @client.event
 async def on_reaction_add(reaction, user):
@@ -76,7 +111,7 @@ async def on_reaction_add(reaction, user):
     
     if user not in blocked_users:
         content = emoji.demojize(reaction.emoji, use_aliases=True)
-        await respond_from_triggers(reaction.message, reaction.emoji, response_config.get("REACTION_EVENTS", []))
+        await respond_from_triggers(reaction.message, reaction.emoji, client.response_config.get("REACTION_EVENTS", []))
 
 @client.event
 async def on_guild_join(server):
@@ -95,21 +130,39 @@ async def on_ready():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("config", type=str, help="Configuration file containing triggers and responses which define bot behavior")
-    parser.add_argument("token", type=str, help="Discord bot token, or a file containing it.")
+    # parser.add_argument("config_folder", type=str, help="Folder containing Configuration file containing triggers and responses which define bot behavior")
     args = parser.parse_args()
-    
-    # Check to see if a file was provided, rather than a token string
-    if os.path.isfile(args.token):
-        with open(args.token) as tokenfile:
-            token = tokenfile.read().strip()
-    else:
-        # We didn't get a valid file, assume we were provided a token directly
-        token = args.token
 
-    with open(args.config) as config:
-        response_config.update(json.load(config))
+    # running_bots = [{}]
+    # fileList = os.listdir(args.config_folder)
+    # logger.info("Found configs: " + str(fileList))
+    # for file in fileList:
+    #     logger.info("initializing bot for config: " + file)
+    #     config = os.path.join(args.config_folder + file)
+    #     client.add_config(config)
+    #     token = client.fetch_token()
+    #     logger.info("using token: " + token)
+    #     if token == "TOKEN_HERE":
+    #         raise "Need to add the token to the config!"
+    #     try:
+    #         # Run Discord bot
+    #         loop = asyncio.get_event_loop()
+    #         loop.run_until_complete(client.start(token))
+    #         # thr = threading.Thread(target=client.start(token), args=(), kwargs={})
+    #         running_bots.append({ file: loop })
+    #         # thr.start()
+    #         logger.info("Started Discord client")
+    #     except Exception as e:
+    #         logger.exception("Error while running Discord client: {}".format(str(vars(e))))
+
+    client.add_config(args.config)
+
     try:
         # Run Discord bot
+        token = client.fetch_token()
+        logger.info("using token: " + token)
+        if token == "TOKEN_HERE":
+            raise "Need to add the token to the config!"
         client.run(token)
         logger.info("Started Discord client")
     except Exception as e:

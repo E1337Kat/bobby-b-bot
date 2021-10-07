@@ -8,5 +8,6 @@
     "SCHEDULE_EVENTS": [
         {"MESSAGES": [], "ARGS": {}}
     ],
-    "MENTION_EVENTS": []
+    "MENTION_EVENTS": [],
+    "TOKEN": "TOKEN_HERE"
 }
