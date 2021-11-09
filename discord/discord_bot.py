@@ -18,7 +18,7 @@ import discord
 sys.path.insert(0, os.path.abspath('..'))
 
 # Local application imports
-from utils.core import is_keyword_mentioned, get_trigger_from_content, get_random_item # bot standard functions
+from utils.core import is_keyword_mentioned, get_trigger_from_content, get_random_item, get_random_new_item # bot standard functions
 from utils.scheduler import init_message_scheduler
 
 # validate all mandatory files exist before starting
@@ -28,6 +28,7 @@ response_config = dict()
 # Instantiate logging in accordance with config file
 fileConfig('../utils/logging_config.ini')
 logger = logging.getLogger('discord')
+logger.setLevel(logging.INFO)
 
 
 # class BotConf:
@@ -75,6 +76,8 @@ async def respond(message, response):
     msg = response.format(message)
     await message.channel.send(msg)
 
+global history
+
 async def respond_from_triggers(message, content, triggers):
     """ Search message content according to provided triggers and yield the best response"""
 
@@ -96,11 +99,13 @@ async def respond_from_triggers(message, content, triggers):
 async def on_message(message):
     # Do not reply to comments from these users, including itself (client.user)
     blocked_users = [ client.user ] 
-    
+    past = get_history()
     if message.author not in blocked_users:
         # Check for mentions first, otherwise respond to message content based triggers.
         if client.user.mentioned_in(message):
-            await respond(message, get_random_item(client.response_config.get("MENTION_EVENTS", [])))
+            response = get_random_new_item(client.response_config.get("MENTION_EVENTS", []), past)
+            add_history(response)
+            await respond(message, response)
         else:
             await respond_from_triggers(message, message.content, client.response_config.get("MESSAGE_EVENTS", []))
 
@@ -111,7 +116,7 @@ async def on_reaction_add(reaction, user):
     
     if user not in blocked_users:
         content = emoji.demojize(reaction.emoji, use_aliases=True)
-        await respond_from_triggers(reaction.message, reaction.emoji, client.response_config.get("REACTION_EVENTS", []))
+        await respond_from_triggers(reaction.message, content, client.response_config.get("REACTION_EVENTS", []))
 
 @client.event
 async def on_guild_join(server):
@@ -126,8 +131,21 @@ async def on_ready():
     # Start the scheduler if there are scheduled jobs
     init_message_scheduler(response_config.get("SCHEDULE_EVENTS", {}), client)
 
+def get_history() -> list:
+    global history
+    return history
 
-if __name__ == '__main__':
+def add_history(item: str):
+    global history
+    if len(history) < 50:
+        history.insert(0, item)
+    else:
+        history.pop()
+        add_history(item)
+
+def main():
+    global history
+
     parser = argparse.ArgumentParser()
     parser.add_argument("config", type=str, help="Configuration file containing triggers and responses which define bot behavior")
     # parser.add_argument("config_folder", type=str, help="Folder containing Configuration file containing triggers and responses which define bot behavior")
@@ -157,6 +175,8 @@ if __name__ == '__main__':
 
     client.add_config(args.config)
 
+    history = []
+
     try:
         # Run Discord bot
         token = client.fetch_token()
@@ -167,3 +187,6 @@ if __name__ == '__main__':
         logger.info("Started Discord client")
     except Exception as e:
         logger.exception("Error while running Discord client: {}".format(str(vars(e))))
+
+if __name__ == '__main__':
+    main()

@@ -12,6 +12,15 @@ def get_random_item(choices):
     if choices:
         return random.choice(choices)
     return None
+
+def get_random_new_item(choices, history: list):
+    """ Returns random quote from list of choices, or None if provided no options. """
+    if choices:
+        while True:
+            choice = random.choice(choices)
+            if history.count(choice) == 0:
+                return choice
+    return None
     
 def is_keyword_mentioned(text, triggers):
     """ Checks if configured trigger words to call the bot are present in the text content """

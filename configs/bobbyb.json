@@ -155,5 +155,6 @@
     ],
     "SCHEDULE_EVENTS": [ 
         {"MESSAGES": [], "ARGS": {}}
-    ]
+    ],
+    "TOKEN": "TOKEN_HERE"
 }
