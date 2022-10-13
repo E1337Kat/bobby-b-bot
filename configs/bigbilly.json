@@ -1,0 +1,81 @@
+{
+    "MESSAGE_EVENTS": [
+        {
+            "TRIGGERS": [  
+                "BillyBot"
+            ],
+            "REACTIONS": [], 
+            "RESPONSES": [
+                "I am Big Billy, the Big Wet Billy, and I'm gonna go clearly nyummm.",
+                "I AM BIG BILLY, THE BIG WET BILLY, AND I'M GONNA GO CLEARLY NYUMMM!",
+                "I am Big Billy, the Big Wet Billy.",
+                "I AM BIG BILLY, THE BIG WET BILLY!",
+                "I am Big Billy.",
+                "I AM BIG BILLY!",
+                "nyummm",
+                "nyummm!",
+                "nyummm?",
+                "nyummm...",
+                "meow",
+                "meow!",
+                "meow?",
+                "meow...",
+                "MEOWWW!!",
+                "meow meow",
+                "meow meow!",
+                "meow meow?",
+                "meow meow...",
+                "MEOW MEOWWW!!",
+                "meow meow meow",
+                "meow meow meow!",
+                "meow meow meow?",
+                "meow meow meow...",
+                "MEOW MEOW MEOWWW!!",
+                "[DIVINE MEOWFULNESS INTENSIFIES]",
+                "[BLESSINGS BE UPON YOU]",
+                "[YOUR PRAYERS HAVE BEEN HEARD]",
+                "[YOU MEOW INTO THE VOID... AND THE VOID MEOWS BACK]",
+                "[ONLY THE FAITHFUL MAY RECEIVE MEGA MEOWS FOREVER]"
+             ]
+        }
+    ],
+    "REACTION_EVENTS": [
+        {"TRIGGERS": [], "REACTIONS": [], "RESPONSES": []}
+    ],
+    "MENTION_EVENTS": [
+        "I am Big Billy, the Big Wet Billy, and I'm gonna go clearly nyummm.",
+        "I AM BIG BILLY, THE BIG WET BILLY, AND I'M GONNA GO CLEARLY NYUMMM!",
+        "I am Big Billy, the Big Wet Billy.",
+        "I AM BIG BILLY, THE BIG WET BILLY!",
+        "I am Big Billy.",
+        "I AM BIG BILLY!",
+        "nyummm",
+        "nyummm!",
+        "nyummm?",
+        "nyummm...",
+        "meow",
+        "meow!",
+        "meow?",
+        "meow...",
+        "MEOWWW!!",
+        "meow meow",
+        "meow meow!",
+        "meow meow?",
+        "meow meow...",
+        "MEOW MEOWWW!!",
+        "meow meow meow",
+        "meow meow meow!",
+        "meow meow meow?",
+        "meow meow meow...",
+        "MEOW MEOW MEOWWW!!",
+        "[DIVINE MEOWFULNESS INTENSIFIES]",
+        "[BLESSINGS BE UPON YOU]",
+        "[YOUR PRAYERS HAVE BEEN HEARD]",
+        "[YOU MEOW INTO THE VOID... AND THE VOID MEOWS BACK]",
+        "[ONLY THE FAITHFUL MAY RECEIVE MEGA MEOWS FOREVER]"
+    ],
+    "SCHEDULE_EVENTS": [ 
+        {"MESSAGES": [], "ARGS": {}}
+    ],
+    "TOKEN": "TOKEN_HERE"
+}

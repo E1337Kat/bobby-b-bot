@@ -44,7 +44,7 @@ logger.setLevel(logging.INFO)
 
 class LocalClient(discord.Client):
     def __init__(self, *, loop=None, **options):
-        super().__init__()
+        super().__init__(intents=discord.Intents.default())
         self.config_file = str()
         self.response_config = dict()
 
